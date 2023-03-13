@@ -114,6 +114,7 @@
 
 <script setup>
 import { useRoute, useRouter } from "vue-router";
+import { weatherApiKey } from "../utils/helper";
 const route = useRoute();
 const router = useRouter();
 const getCityData = async () => {
@@ -134,7 +135,7 @@ const getWeather = async () => {
   } = await getCityData();
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=87c946a8cbc9e34c1a8c166bdb58a148&units=imperial`
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${weatherApiKey}&units=imperial`
     );
     const data = await response.json();
     data.current.dt = 1000 * data.current.dt;
